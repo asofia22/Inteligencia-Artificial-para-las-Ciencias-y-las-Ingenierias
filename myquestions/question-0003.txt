@@ -1,0 +1,14 @@
+El Problema:
+
+Recibes un DataFrame de pandas que contiene únicamente variables numéricas.
+
+Tu misión es escribir una función llamada detectar_anomalias(df) que:
+
+1. Utilice el modelo IsolationForest de sklearn para detectar anomalías en los datos.
+2. Entrene el modelo con los datos del DataFrame.
+3. Genere una predicción para cada fila, donde:
+   - -1 indica anomalía
+   - 1 indica dato normal
+4. Devuelva un array de numpy con las predicciones.
+
+Nota: usa los parámetros por defecto del modelo.
