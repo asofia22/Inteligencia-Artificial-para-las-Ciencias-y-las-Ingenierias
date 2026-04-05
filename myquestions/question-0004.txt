@@ -9,8 +9,8 @@ Tu misión es escribir una función llamada entrenar_modelo_polinomial(X, y) que
 1. Cree un Pipeline de sklearn que incluya:
    - PolynomialFeatures de grado 2
    - LinearRegression
-2. Entrene el modelo con los datos X e y.
+2. Entrene el modelo utilizando los datos X e y.
 3. Genere predicciones sobre X.
-4. Devuelva un array de numpy con las predicciones.
+4. Devuelva un array de numpy con las predicciones en el mismo orden que X.
 
 Nota: no debes dividir los datos, entrena y predice sobre el mismo conjunto.
