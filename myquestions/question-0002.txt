@@ -1,0 +1,16 @@
+El Problema:
+
+Recibes un DataFrame de pandas que contiene las columnas:
+- "usuario": identificador de usuario
+- "fecha": fechas en formato datetime
+- "evento": valores binarios (0 o 1)
+
+Tu misión es escribir una función llamada calcular_racha_maxima(df) que:
+
+1. Para cada usuario, ordene los datos por fecha.
+2. Calcule la racha más larga consecutiva de valores iguales a 1 en la columna "evento".
+3. Devuelva un DataFrame con dos columnas:
+   - "usuario"
+   - "racha_maxima"
+
+Cada fila representa un usuario y su racha máxima de eventos consecutivos iguales a 1.
