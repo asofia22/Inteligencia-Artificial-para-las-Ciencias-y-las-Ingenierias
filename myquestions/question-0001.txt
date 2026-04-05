@@ -1,1 +1,12 @@
+El Problema:
 
+Recibes un DataFrame de pandas que contiene una columna categórica llamada "categoria" y una columna numérica llamada "valor".
+
+Tu misión es escribir una función llamada detectar_outliers_por_grupo(df) que:
+
+1. Agrupe los datos por la columna "categoria".
+2. Para cada grupo, calcule el rango intercuartílico (IQR).
+3. Identifique como outliers los valores que estén por debajo de Q1 - 1.5*IQR o por encima de Q3 + 1.5*IQR.
+4. Devuelva un DataFrame con las mismas filas originales y una nueva columna llamada "es_outlier" que sea True o False.
+
+La función debe devolver el DataFrame resultante.
