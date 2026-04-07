@@ -55,4 +55,5 @@ def generar_caso_de_uso_detectar_outliers_por_grupo():
             "input": df,
             "output": output
         },
+        None
     )
