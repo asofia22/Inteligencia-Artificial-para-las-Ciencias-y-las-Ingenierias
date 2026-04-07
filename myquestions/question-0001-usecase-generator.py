@@ -2,19 +2,17 @@ import pandas as pd
 import numpy as np
 
 def generar_caso_de_uso_detectar_outliers_por_grupo():
-    np.random.seed()
+    np.random.seed(42)
 
     categorias = ['A', 'B', 'C']
     data = []
 
-    # Generar datos normales por categoría
     for cat in categorias:
         valores = np.random.normal(loc=50, scale=10, size=20)
 
-        # Agregar outliers artificiales
         valores = list(valores)
-        valores.append(200)   # outlier alto
-        valores.append(-50)   # outlier bajo
+        valores.append(200)
+        valores.append(-50)
 
         for v in valores:
             data.append({
@@ -24,9 +22,6 @@ def generar_caso_de_uso_detectar_outliers_por_grupo():
 
     df = pd.DataFrame(data)
 
-    # -------------------------------
-    # FUNCIÓN SOLUCIÓN (esperada)
-    # -------------------------------
     def detectar_outliers_por_grupo(df):
         df_result = df.copy()
         df_result["es_outlier"] = False
@@ -53,10 +48,9 @@ def generar_caso_de_uso_detectar_outliers_por_grupo():
 
         return df_result
 
-    # Ejecutar solución esperada
     output = detectar_outliers_por_grupo(df)
 
     return {
         "input": df,
-        "output_esperado": output
+        "output": output
     }
