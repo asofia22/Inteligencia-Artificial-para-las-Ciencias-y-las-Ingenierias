@@ -1,53 +1,26 @@
 import pandas as pd
 import numpy as np
+from sklearn.ensemble import IsolationForest
 
-def generar_caso_de_uso_detectar_outliers_por_grupo():
+def generar_caso_de_uso_detectar_anomalias():
     np.random.seed(42)
 
-    categorias = ['A', 'B', 'C']
-    data = []
+    # Datos normales
+    normales = np.random.normal(loc=0, scale=1, size=(100, 3))
+    # Anomalías artificiales
+    anomalias = np.random.uniform(low=8, high=10, size=(10, 3))
+    # Combinar
+    datos = np.vstack([normales, anomalias])
 
-    for cat in categorias:
-        valores = np.random.normal(loc=50, scale=10, size=20)
-        valores = list(valores)
-        valores.append(200)
-        valores.append(-50)
+    df = pd.DataFrame(datos, columns=["f1", "f2", "f3"])
 
-        for v in valores:
-            data.append({
-                "categoria": cat,
-                "valor": float(v)
-            })
+    def detectar_anomalias(df):
+        modelo = IsolationForest()
+        modelo.fit(df)
+        preds = modelo.predict(df)
+        return preds
 
-    df = pd.DataFrame(data)
-
-    def detectar_outliers_por_grupo(df):
-        df_result = df.copy()
-        df_result["es_outlier"] = False
-
-        for cat in df["categoria"].unique():
-            subset = df[df["categoria"] == cat]
-
-            Q1 = subset["valor"].quantile(0.25)
-            Q3 = subset["valor"].quantile(0.75)
-            IQR = Q3 - Q1
-
-            lower = Q1 - 1.5 * IQR
-            upper = Q3 + 1.5 * IQR
-
-            mask = (
-                (df_result["categoria"] == cat) &
-                (
-                    (df_result["valor"] < lower) |
-                    (df_result["valor"] > upper)
-                )
-            )
-
-            df_result.loc[mask, "es_outlier"] = True
-
-        return df_result
-
-    output = detectar_outliers_por_grupo(df)
+    output = detectar_anomalias(df)
 
     return (
         {
