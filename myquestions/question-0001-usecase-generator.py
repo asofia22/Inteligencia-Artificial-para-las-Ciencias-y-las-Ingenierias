@@ -50,7 +50,9 @@ def generar_caso_de_uso_detectar_outliers_por_grupo():
 
     output = detectar_outliers_por_grupo(df)
 
-    return {
-        "input": df,
-        "output": output
-    }
+    return (
+        {
+            "input": df,
+            "output": output
+        },
+    )
