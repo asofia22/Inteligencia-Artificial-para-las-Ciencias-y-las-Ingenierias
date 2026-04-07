@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 def generar_caso_de_uso_calcular_racha_maxima():
-    np.random.seed()
+    np.random.seed(42)
 
     usuarios = ['U1', 'U2', 'U3']
     data = []
@@ -10,7 +10,7 @@ def generar_caso_de_uso_calcular_racha_maxima():
     for user in usuarios:
         n = np.random.randint(10, 20)
 
-        fechas = pd.date_range(start="2023-01-01", periods=n, freq="D")
+        fechas = list(pd.date_range(start="2023-01-01", periods=n, freq="D"))
         np.random.shuffle(fechas)
 
         eventos = np.random.choice([0, 1], size=n, p=[0.6, 0.4])
@@ -24,9 +24,6 @@ def generar_caso_de_uso_calcular_racha_maxima():
 
     df = pd.DataFrame(data)
 
-    # -------------------------------
-    # FUNCIÓN SOLUCIÓN (esperada)
-    # -------------------------------
     def calcular_racha_maxima(df):
         resultados = []
 
@@ -50,10 +47,9 @@ def generar_caso_de_uso_calcular_racha_maxima():
 
         return pd.DataFrame(resultados)
 
-    # Ejecutar solución esperada
     output = calcular_racha_maxima(df)
 
     return {
         "input": df,
-        "output_esperado": output
+        "output": output
     }
