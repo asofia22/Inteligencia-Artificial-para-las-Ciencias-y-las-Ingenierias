@@ -22,10 +22,10 @@ def generar_caso_de_uso_entrenar_modelo_polinomial():
 
     output = entrenar_modelo_polinomial(X, y)
 
-    return {
-        "input": {
-            "X": X,
-            "y": y
+    return (
+        {
+            "input": (X, y),
+            "output": output
         },
-        "output": output
-    }
+        None
+    )
