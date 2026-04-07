@@ -9,10 +9,8 @@ def generar_caso_de_uso_calcular_racha_maxima():
 
     for user in usuarios:
         n = np.random.randint(10, 20)
-
         fechas = list(pd.date_range(start="2023-01-01", periods=n, freq="D"))
         np.random.shuffle(fechas)
-
         eventos = np.random.choice([0, 1], size=n, p=[0.6, 0.4])
 
         for f, e in zip(fechas, eventos):
@@ -49,7 +47,10 @@ def generar_caso_de_uso_calcular_racha_maxima():
 
     output = calcular_racha_maxima(df)
 
-    return {
-        "input": df,
-        "output": output
-    }
+    return (
+        {
+            "input": df,
+            "output": output
+        },
+        None
+    )
