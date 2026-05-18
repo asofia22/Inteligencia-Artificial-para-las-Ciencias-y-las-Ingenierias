@@ -1,1 +1,38 @@
+Diagnóstico de la validación automática — answer-0307.py
 
+La solución desarrollada en el archivo answer-0307.py implementa correctamente la función solicitada predecir_desgaste(X, y, umbral_varianza=0.01), siguiendo exactamente los pasos descritos en el enunciado:
+
+1. Aplicar VarianceThreshold.
+2. Escalar con MinMaxScaler.
+3. Entrenar un modelo BayesianRidge.
+4. Devolver el diccionario con las métricas y coeficientes solicitados.
+
+Sin embargo, el validador automático clasificó esta pregunta dentro de:
+
+usecase generator errors
+
+El problema no proviene de la solución implementada, sino del archivo del generador de casos de uso:
+
+question-0003-usecase-generator.py
+
+En dicho generador se utilizan funciones del módulo random, por ejemplo:
+
+- random.randint(...)
+- random.uniform(...)
+- random.sample(...)
+
+pero el archivo no incluye la instrucción:
+
+import random
+
+Por esta razón, durante la ejecución automática aparece el error:
+
+NameError: name 'random' is not defined
+
+El error ocurre dentro del generador de casos de uso antes de ejecutar la solución answer-0307.py, por lo que la función desarrollada no alcanza a ser evaluada correctamente por el validador.
+
+Al añadir:
+
+import random
+
+al inicio del generador, la solución answer-0307.py ejecuta correctamente y produce la salida esperada.
